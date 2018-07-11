@@ -84,3 +84,6 @@ $( document ).ready(function() {
         }
     });
     });
+    $("iframe").each(function() {
+        $(this).attr("src", $(this).attr("src").replace("http://", "https://"));
+    });
