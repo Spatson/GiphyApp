@@ -27,14 +27,6 @@ $( document ).ready(function() {
         });
     }
 
-    function removeLastButton(){
-        $("removeGif").on("click", function(){
-        actions.pop(action);
-        displayGifButtons();
-        return false;
-        });
-    }
-
     function displayGifs(){
         var action = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + action + "&api_key=a4cBau4QhzNrdfN7llgoD8I9VO1uCQbt&limit=10";
@@ -70,7 +62,6 @@ $( document ).ready(function() {
  
     displayGifButtons();
     addNewButton();
-    removeLastButton();
 
     $(document).on("click", ".action", displayGifs);
     $(document).on("click", ".image", function(){
