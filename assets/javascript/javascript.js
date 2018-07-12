@@ -1,26 +1,26 @@
 $( document ).ready(function() {
 
-    var actions = ["Typing","Dancing", "Jogging", "Falling", "Reading", "Pushing", "Swimming", "Eating", "Skipping", "Crying", "Winking","Tripping", "Strolling", "Hopping", "Laughing", "Smoking"];
+    var topics = ["Typing","Dancing", "Jogging", "Falling", "Reading", "Pushing", "Swimming", "Eating", "Skipping", "Crying", "Winking","Tripping", "Strolling", "Hopping", "Laughing", "Smoking"];
 
     function displayGifButtons(){
         $("#gifButtonsView").empty();
-        for (var i = 0; i < actions.length; i++){
+        for (var i = 0; i < topics.length; i++){
             var gifButton = $("<button>");
-            gifButton.addClass("action");
+            gifButton.addClass("topic");
             gifButton.addClass("btn btn-primary")
-            gifButton.attr("data-name", actions[i]);
-            gifButton.text(actions[i]);
+            gifButton.attr("data-name", topics[i]);
+            gifButton.text(topics[i]);
             $("#gifButtonsView").append(gifButton);
         }
     }
 
     function addNewButton(){
         $("#addGif").on("click", function(){
-        var action = $("#action-input").val().trim();
-        if (action == ""){
+        var topic = $("#topic-input").val().trim();
+        if (topic == ""){
           return false; 
         }
-        actions.push(action);
+        topics.push(topic);
     
         displayGifButtons();
         return false;
@@ -28,8 +28,8 @@ $( document ).ready(function() {
     }
 
     function displayGifs(){
-        var action = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + action + "&api_key=a4cBau4QhzNrdfN7llgoD8I9VO1uCQbt&limit=10";
+        var topic = $(this).attr("data-name");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=a4cBau4QhzNrdfN7llgoD8I9VO1uCQbt&limit=10";
         $.ajax({
             url: queryURL,
             method: 'GET'
@@ -63,7 +63,7 @@ $( document ).ready(function() {
     displayGifButtons();
     addNewButton();
 
-    $(document).on("click", ".action", displayGifs);
+    $(document).on("click", ".topic", displayGifs);
     $(document).on("click", ".image", function(){
         var state = $(this).attr('data-state');
         if ( state == 'still'){
